@@ -4,9 +4,22 @@
   import UVXray from "./UVXray.svelte";
 
   let currentPage = 'health'; // 'health', 'signature', 'uvxray'
+  let bpm = 72; // Manage BPM state in parent
 
   function changePage(page) {
     currentPage = page;
+  }
+
+  function increaseBPM() {
+    if (bpm < 200) bpm += 5;
+  }
+
+  function decreaseBPM() {
+    if (bpm > 40) bpm -= 5;
+  }
+
+  function resetBPM() {
+    bpm = 72;
   }
 </script>
 
@@ -17,41 +30,49 @@
     <div class="display-screen">
       <div class="screen-content">
         <nav class="nav-menu">
-          <button 
-            class="nav-button" 
-            class:active={currentPage === 'health'} 
+          <button
+            class="nav-button"
+            class:active={currentPage === 'health'}
             on:click={() => changePage('health')}
           >
             Health
           </button>
-          <button 
-            class="nav-button" 
-            class:active={currentPage === 'signature'} 
+          <button
+            class="nav-button"
+            class:active={currentPage === 'signature'}
             on:click={() => changePage('signature')}
           >
             Sign
           </button>
-          <button 
-            class="nav-button" 
-            class:active={currentPage === 'uvxray'} 
+          <button
+            class="nav-button"
+            class:active={currentPage === 'uvxray'}
             on:click={() => changePage('uvxray')}
           >
             UV/X-Ray
           </button>
         </nav>
-
         <div class="page-content">
           {#if currentPage === 'health'}
-            <HealthStatsPage />
+            <HealthStatsPage bind:bpm={bpm} />
           {:else if currentPage === 'signature'}
             <SignaturePage />
           {:else if currentPage === 'uvxray'}
             <UVXray />
           {/if}
         </div>
+
       </div>
     </div>
   </div>
+
+  {#if currentPage === 'health'}
+    <div class="bottom-controls">
+      <button class="control-btn" on:click={decreaseBPM}>-</button>
+      <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
+      <button class="control-btn" on:click={increaseBPM}>+</button>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -65,7 +86,6 @@
     align-items: center;
     justify-content: center;
   }
-
   .cast-hand {
     position: relative;
     transform: rotate(-270deg);
@@ -79,7 +99,6 @@
     filter: grayscale(100%) brightness(1.2);
     display: block;
   }
-
   .cast-hand::before {
     content: '';
     position: absolute;
@@ -95,7 +114,6 @@
       inset 2px 0 8px rgba(255,255,255,0.1);
     z-index: -1;
   }
-
   .display-screen {
     position: absolute;
     bottom: 5vmin;
@@ -119,7 +137,6 @@
     font-size: clamp(12px, 1.5vmin, 24px);
     box-shadow: inset 0 0 20px rgba(0,255,136,0.1);
   }
-
   .nav-menu {
     display: flex;
     gap: 0;
@@ -128,7 +145,6 @@
     overflow: hidden;
     background: transparent;
   }
-
   .nav-button {
     flex: 1;
     padding: 0.5rem;
@@ -140,26 +156,60 @@
     cursor: pointer;
     transition: all 0.3s ease;
   }
-
   .nav-button:not(:last-child) {
     border-right: none;
   }
-
   .nav-button.active {
     background: #00ffff;
     color: #000;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
-
   .nav-button:hover:not(.active) {
     background: rgba(0, 255, 255, 0.1);
   }
-
   .page-content {
     height: calc(100% - 2.5rem);
     overflow-y: auto;
   }
   
+  .bottom-controls {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
+  }
+
+  .control-btn {
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    min-width: 60px;
+  }
+
+  .control-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  }
+
+  .control-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+  }
+
+  .control-btn.reset {
+    min-width: 150px;
+  }
+
   /* Scrollbar styling */
   .screen-content::-webkit-scrollbar,
   .page-content::-webkit-scrollbar {
