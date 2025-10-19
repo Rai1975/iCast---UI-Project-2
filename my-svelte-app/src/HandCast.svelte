@@ -1,5 +1,7 @@
 <script>
   export let displayContent = "App Content";
+  import HealthStatsPage from "./HealthStatsPage.svelte";
+    import SignaturePage from "./SignaturePage.svelte";
 </script>
 
 <div class="hand-cast-container">
@@ -7,12 +9,10 @@
   <div class="cast-hand">
     <span class="hand-emoji">🤚</span>
     <div class="display-screen">
-      <div class="screen-bezel">
         <div class="screen-content">
           <slot>
-            <p>{displayContent}</p>
+            <SignaturePage />
           </slot>
-        </div>
       </div>
     </div>
   </div>
@@ -65,40 +65,24 @@
     position: absolute;
     bottom: 5vmin;
     left: 50%;
-    transform: translateX(-40%) translateY(100%);
+    transform: translateX(-41.5%) translateY(70%);
     width: 25vmin;
     height: 18vmin;
     z-index: 10;
   }
   
-  .screen-bezel {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-    border-radius: 12px;
-    transform: rotate(-90deg);
-    padding: 1vmin;
-    box-shadow: 
-      inset 0 2px 4px rgba(0,0,0,0.5),
-      0 8px 16px rgba(0,0,0,0.6);
-  }
-  
   .screen-content {
     width: 100%;
-    height: 100%;
-    background: linear-gradient(145deg, #1e3a5f, #0f2540);
+    height: 145%;
+    background: black;
     border-radius: 8px;
     padding: 2vmin;
     overflow-y: auto;
+    transform: rotate(-90deg);
     color: #00ff88;
     font-family: 'Courier New', monospace;
     font-size: clamp(12px, 1.5vmin, 24px);
     box-shadow: inset 0 0 20px rgba(0,255,136,0.1);
-  }
-  
-  .screen-content p {
-    margin: 0;
-    text-align: center;
   }
   
   /* Scrollbar styling */
@@ -107,7 +91,7 @@
   }
   
   .screen-content::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
   }
   
   .screen-content::-webkit-scrollbar-thumb {
