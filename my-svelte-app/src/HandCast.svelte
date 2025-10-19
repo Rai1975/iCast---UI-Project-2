@@ -1,7 +1,13 @@
 <script>
-  export let displayContent = "App Content";
   import HealthStatsPage from "./HealthStatsPage.svelte";
-    import SignaturePage from "./SignaturePage.svelte";
+  import SignaturePage from "./SignaturePage.svelte";
+  import UVXray from "./UVXray.svelte";
+
+  let currentPage = 'health'; // 'health', 'signature', 'uvxray'
+
+  function changePage(page) {
+    currentPage = page;
+  }
 </script>
 
 <div class="hand-cast-container">
@@ -9,14 +15,43 @@
   <div class="cast-hand">
     <span class="hand-emoji">🤚</span>
     <div class="display-screen">
-        <div class="screen-content">
-          <slot>
+      <div class="screen-content">
+        <nav class="nav-menu">
+          <button 
+            class="nav-button" 
+            class:active={currentPage === 'health'} 
+            on:click={() => changePage('health')}
+          >
+            Health
+          </button>
+          <button 
+            class="nav-button" 
+            class:active={currentPage === 'signature'} 
+            on:click={() => changePage('signature')}
+          >
+            Sign
+          </button>
+          <button 
+            class="nav-button" 
+            class:active={currentPage === 'uvxray'} 
+            on:click={() => changePage('uvxray')}
+          >
+            UV/X-Ray
+          </button>
+        </nav>
+
+        <div class="page-content">
+          {#if currentPage === 'health'}
+            <HealthStatsPage />
+          {:else if currentPage === 'signature'}
             <SignaturePage />
-          </slot>
+          {:else if currentPage === 'uvxray'}
+            <UVXray />
+          {/if}
+        </div>
       </div>
     </div>
   </div>
-  
 </div>
 
 <style>
@@ -51,8 +86,8 @@
     bottom: -15vmin;
     left: 55%;
     transform: translateX(-50%) translateY(30%);
-    width: 30vmin;
-    height: 50vmin;
+    width: 35vmin;
+    height: 60vmin;
     background: linear-gradient(180deg, #d4c5b0 0%, #c4b5a0 100%);
     border-radius: 6vmin;
     box-shadow:
@@ -66,8 +101,8 @@
     bottom: 5vmin;
     left: 50%;
     transform: translateX(-41.5%) translateY(70%);
-    width: 25vmin;
-    height: 18vmin;
+    width: 40vmin;
+    height: 22vmin;
     z-index: 10;
   }
   
@@ -84,20 +119,61 @@
     font-size: clamp(12px, 1.5vmin, 24px);
     box-shadow: inset 0 0 20px rgba(0,255,136,0.1);
   }
+
+  .nav-menu {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .nav-button {
+    flex: 1;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #00ffff;
+    color: #00ffff;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .nav-button:not(:last-child) {
+    border-right: none;
+  }
+
+  .nav-button.active {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .nav-button:hover:not(.active) {
+    background: rgba(0, 255, 255, 0.1);
+  }
+
+  .page-content {
+    height: calc(100% - 2.5rem);
+    overflow-y: auto;
+  }
   
   /* Scrollbar styling */
-  .screen-content::-webkit-scrollbar {
+  .screen-content::-webkit-scrollbar,
+  .page-content::-webkit-scrollbar {
     width: 4px;
   }
   
-  .screen-content::-webkit-scrollbar-track {
+  .screen-content::-webkit-scrollbar-track,
+  .page-content::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
   }
   
-  .screen-content::-webkit-scrollbar-thumb {
+  .screen-content::-webkit-scrollbar-thumb,
+  .page-content::-webkit-scrollbar-thumb {
     background: #00ff88;
     border-radius: 2px;
   }
-
-
 </style>
