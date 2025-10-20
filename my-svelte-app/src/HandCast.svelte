@@ -167,6 +167,9 @@
     50% { opacity: 0.8; }
   }
 
+  button {
+    margin: .3rem;
+  }
   .hand-cast-container {
     position: relative;
     width: 100vw;
