@@ -251,7 +251,7 @@
   }
 
   .sensor-reading {
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--secondary-color);
     padding: 1vmin;
     display: flex;
     flex-direction: column;
@@ -263,7 +263,7 @@
 
   .pressure-value {
     font-size: clamp(14px, 2.8vmin, 28px);
-    color: #00ffff;
+    color: var(--font-color);
     font-weight: bold;
     margin-bottom: 0.2vmin;
     text-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
@@ -277,7 +277,7 @@
 
   .sensor-label {
     font-size: clamp(7px, 1.1vmin, 12px);
-    color: #00ffff;
+    color: var(--font-color);
     opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -285,7 +285,7 @@
   }
 
   .pressure-control {
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--secondary-color);
     border: 1px solid #00ffff;
     border-radius: 1vmin;
     padding: 1vmin;
@@ -303,7 +303,7 @@
 
   .control-label {
     font-size: clamp(8px, 1.3vmin, 14px);
-    color: #00ffff;
+    color: var(--font-color);
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -334,10 +334,10 @@
   .arrow-btn {
     width: 3vmin;
     height: 3vmin;
-    background: rgba(0, 255, 255, 0.1);
+    background: var(--secondary-color);
     border: 1px solid #00ffff;
     border-radius: 50%;
-    color: #00ffff;
+    color: var(--font-color);
     font-size: clamp(10px, 1.8vmin, 18px);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -348,8 +348,8 @@
   }
 
   .arrow-btn:hover:not(:disabled) {
-    background: rgba(0, 255, 255, 0.2);
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    background: var(--secondary-color);
+    box-shadow: var(--secondary-color);
     transform: scale(1.1);
   }
 
@@ -367,14 +367,14 @@
 
   .target-value {
     font-size: clamp(12px, 2.2vmin, 22px);
-    color: #00ffff;
+    color: var(--font-color);
     font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
   }
 
   .target-label {
     font-size: clamp(6px, 1vmin, 10px);
-    color: #00ffff;
+    color: var(--font-color);
     opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -383,10 +383,10 @@
   .update-btn {
     width: 100%;
     padding: 0.6vmin;
-    background: rgba(0, 255, 255, 0.1);
+    background: var(--secondary-color);
     border: 1px solid #00ffff;
     border-radius: 0.5vmin;
-    color: #00ffff;
+    color: var(--font-color);
     font-size: clamp(8px, 1.2vmin, 14px);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -396,13 +396,13 @@
   }
 
   .update-btn.enabled {
-    background: rgba(0, 255, 255, 0.2);
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    background: var(--secondary-color);
+    box-shadow: var(--secondary-color);
   }
 
   .update-btn:hover:not(:disabled) {
-    background: rgba(0, 255, 255, 0.3);
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    background: var(--secondary-color);
+    box-shadow: var(--secondary-color);
     transform: translateY(-1px);
   }
 
@@ -412,7 +412,7 @@
   }
 
   .pressure-history {
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--secondary-color);
     border: 1px solid #00ffff;
     border-radius: 1vmin;
     padding: 1vmin;
@@ -430,7 +430,7 @@
 
   .history-label {
     font-size: clamp(8px, 1.3vmin, 14px);
-    color: #00ffff;
+    color: var(--font-color);
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -440,7 +440,7 @@
 
   .time-range {
     font-size: clamp(6px, 1vmin, 10px);
-    color: #00ffff;
+    color: var(--font-color);
     opacity: 0.7;
   }
 
@@ -455,7 +455,7 @@
     width: 100%;
     border: 1px solid rgba(0, 255, 255, 0.3);
     border-radius: 0.4vmin;
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--secondary-color);
   }
 
   .graph-info {
@@ -463,7 +463,7 @@
     justify-content: space-between;
     width: 100%;
     font-size: clamp(8px, 1.2vmin, 14px);
-    color: #00ffff;
+    color: var(--font-color);
     opacity: 0.8;
     font-weight: bold;
   }

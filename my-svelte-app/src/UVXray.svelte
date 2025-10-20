@@ -206,7 +206,7 @@
     gap: 1.5rem;
     padding: 1rem;
     height: 100%;
-    color: #00ffff;
+    color: var(--font-color);
     align-items: center;
     justify-content: center;
   }
@@ -394,7 +394,7 @@
     padding: 0.5rem;
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid #00ffff;
-    color: #00ffff;
+    color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: 0.8rem;
     cursor: pointer;
@@ -416,7 +416,7 @@
 
   .action-button.active {
     background: #00ffff;
-    color: #000;
+    color: var(--font-color);
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
 

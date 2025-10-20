@@ -83,7 +83,7 @@
   }
   
   .metric-card {
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--secondary-color);
     border: 1px solid #00ffff;
     border-radius: 1vmin;
     padding: 1vmin;
@@ -98,7 +98,7 @@
   }
   
   .metric-card:hover {
-    background: rgba(0, 255, 255, 0.1);
+    background: var(--secondary-color);
     border-color: #00ffff;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     transform: scale(1.05);
@@ -117,7 +117,7 @@
 
   .value {
     font-size: clamp(14px, 2.2vmin, 26px);
-    color: #00ffff;
+    color: var(--font-color);
     font-weight: bold;
     margin-bottom: 0.3vmin;
     text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
@@ -131,7 +131,7 @@
   
   .label {
     font-size: clamp(8px, 1.2vmin, 14px);
-    color: #00ffff;
+    color: var(--font-color);
     opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 0.05em;

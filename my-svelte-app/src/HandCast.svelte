@@ -191,7 +191,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 9999;
-    background: black;
+    background: var(--background-color);
   }
 
   .unlock-hint {
@@ -199,7 +199,7 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: rgba(0, 255, 255, 0.5);
+    color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: 0.9rem;
     z-index: 10000;
@@ -246,7 +246,7 @@
     transform: translateX(-50%) translateY(45%);
     width: 38vmin;
     height: 85vmin;
-    background: #c9c9c9;
+    background: var(--cast-color);
     border-radius: 6vmin;
     box-shadow:
       inset -2px 0 8px rgba(0,0,0,0.2),
@@ -266,7 +266,7 @@
   .screen-content {
     width: 180%;
     height: 142%;
-    background: black;
+    background: var(--background-color);
     border-radius: 8px;
     padding: 2vmin;
     overflow-y: auto;
@@ -292,7 +292,7 @@
     padding: 0.5rem;
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid #00ffff;
-    color: #00ffff;
+    color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: 0.8rem;
     cursor: pointer;
@@ -302,12 +302,12 @@
     border-right: none;
   }
   .nav-button.active {
-    background: #00ffff;
-    color: #000;
+    background: var(--background-color);
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
   .nav-button:hover:not(.active) {
     background: rgba(0, 255, 255, 0.1);
+    background: var(--background-color);
   }
   .page-content {
     height: calc(100% - 2.5rem);
@@ -329,7 +329,7 @@
     padding: 1rem 2rem;
     background: rgba(0, 0, 0, 0.8);
     border: 2px solid #00ffff;
-    color: #00ffff;
+    color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: 1.2rem;
     font-weight: bold;
@@ -340,7 +340,7 @@
   }
 
   .control-btn:hover {
-    background: rgba(0, 255, 255, 0.2);
+    background: var(--background-color);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
   }
 
@@ -355,13 +355,13 @@
 
   .control-btn.lock-btn {
     min-width: 150px;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--background-color);
     border-color: #ff9900;
-    color: #ff9900;
+    color: var(--font-color);
   }
 
   .control-btn.lock-btn:hover {
-    background: rgba(255, 153, 0, 0.2);
+    background: var(--background-color);
     box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
   }
 
@@ -373,7 +373,6 @@
   
   .screen-content::-webkit-scrollbar-track,
   .page-content::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
   }
   
   .screen-content::-webkit-scrollbar-thumb,

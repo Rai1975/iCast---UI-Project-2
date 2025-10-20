@@ -89,7 +89,7 @@
   .screensaver {
     width: 100%;
     height: 100%;
-    background: #000;
+    background: var(--secondary-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -105,7 +105,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    background: var(--secondary-color);
     animation: scan 4s linear infinite;
     opacity: 0.3;
   }

@@ -123,7 +123,7 @@
   .screensaver {
     width: 100%;
     height: 100%;
-    background: #000;
+    background: var(--secondary-color);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -133,7 +133,7 @@
   }
   
   .loading, .error {
-    color: #00ffff;
+    color: var(--font-color);
     text-align: center;
     font-size: clamp(10px, 1.5vmin, 18px);
   }
@@ -154,7 +154,7 @@
   }
 
   .error-path {
-    color: #00ff88;
+    color: var(--font-color);
     font-family: monospace;
     margin-bottom: 1vmin;
   }
@@ -234,7 +234,7 @@
   }
   
   .signature-label {
-    color: #00ffff;
+    color: var(--font-color);
     font-size: clamp(8px, 1.2vmin, 14px);
     opacity: 0.6;
     text-transform: uppercase;
@@ -255,12 +255,12 @@
     min-width: 4px;
     min-height: 4px;
     border-radius: 50%;
-    background: rgba(0, 255, 255, 0.3);
+    background: var(--secondary-color);
     transition: all 0.3s ease;
   }
   
   .dot.active {
-    background: #00ffff;
+    background: var(--secondary-color);
     box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
     transform: scale(1.3);
   }
@@ -272,7 +272,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    background: var(--secondary-color);
     animation: scan 3s linear infinite;
     opacity: 0.3;
   }
