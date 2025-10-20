@@ -4,12 +4,13 @@
   import UVXray from "./UVXray.svelte";
   import ScreenSaver from "./ScreenSaver.svelte";
   import { onMount, onDestroy } from 'svelte';
+  import Pressure from "./Pressure.svelte";
 
-  let currentPage = 'health'; // 'health', 'signature', 'uvxray'
+  let currentPage = 'health'; // 'health', 'signature', 'uvxray', 'pressure'
   let bpm = 72; // Manage BPM state in parent
   let isLocked = false;
   let idleTimeout;
-  const IDLE_TIME = 5000; // 1 minute in milliseconds
+  const IDLE_TIME = 60000; // 1 minute in milliseconds
 
   function changePage(page) {
     currentPage = page;
@@ -105,6 +106,13 @@
             >
               UV/X-Ray
             </button>
+            <button
+              class="nav-button"
+              class:active={currentPage === 'pressure'}
+              on:click={() => changePage('pressure')}
+            >
+              Pressure
+            </button>
           </nav>
           <div class="page-content">
             {#if isLocked}
@@ -115,6 +123,8 @@
               <SignaturePage />
             {:else if currentPage === 'uvxray'}
               <UVXray />
+            {:else if currentPage === 'pressure'}
+              <Pressure />
             {/if}
           </div>
         </div>
@@ -182,7 +192,7 @@
   }
   .cast-hand {
     position: relative;
-    transform: rotate(-270deg);
+    transform: translateX(20%) rotate(-270deg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,35 +202,36 @@
     font-size: 60vmin;
     filter: grayscale(100%) brightness(1.2);
     display: block;
+    transform: translate(10%, -10%) scaleX(-1);
   }
   .cast-hand::before {
     content: '';
     position: absolute;
     bottom: -15vmin;
     left: 55%;
-    transform: translateX(-50%) translateY(30%);
-    width: 35vmin;
-    height: 60vmin;
+    transform: translateX(-50%) translateY(45%);
+    width: 38vmin;
+    height: 85vmin;
     background: linear-gradient(180deg, #d4c5b0 0%, #c4b5a0 100%);
     border-radius: 6vmin;
     box-shadow:
       inset -2px 0 8px rgba(0,0,0,0.2),
       inset 2px 0 8px rgba(255,255,255,0.1);
-    z-index: -1;
+    z-index: 2;
   }
   .display-screen {
     position: absolute;
     bottom: 5vmin;
     left: 50%;
-    transform: translateX(-41.5%) translateY(70%);
+    transform: translateX(-50%) translateY(70%);
     width: 40vmin;
     height: 22vmin;
     z-index: 10;
   }
   
   .screen-content {
-    width: 100%;
-    height: 145%;
+    width: 180%;
+    height: 142%;
     background: black;
     border-radius: 8px;
     padding: 2vmin;
@@ -230,6 +241,9 @@
     font-family: 'Courier New', monospace;
     font-size: clamp(12px, 1.5vmin, 24px);
     box-shadow: inset 0 0 20px rgba(0,255,136,0.1);
+    position: relative;
+    left: -35%;
+    top: 20%;
   }
   .nav-menu {
     display: flex;
