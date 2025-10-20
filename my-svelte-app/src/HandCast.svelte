@@ -10,7 +10,7 @@
   let bpm = 72; // Manage BPM state in parent
   let isLocked = false;
   let idleTimeout;
-  const IDLE_TIME = 60000; // 1 minute in milliseconds
+  const IDLE_TIME = 3000; // 1 minute in milliseconds
 
   function changePage(page) {
     currentPage = page;
@@ -136,15 +136,9 @@
         <button class="control-btn" on:click={decreaseBPM}>-</button>
         <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
         <button class="control-btn" on:click={increaseBPM}>+</button>
-        <button class="control-btn lock-btn" on:click={toggleLock}>
-          {isLocked ? '🔒 Locked' : '🔓 Lock'}
-        </button>
       </div>
     {:else}
       <div class="bottom-controls">
-        <button class="control-btn lock-btn" on:click={toggleLock}>
-          {isLocked ? '🔒 Locked' : '🔓 Lock'}
-        </button>
       </div>
     {/if}
   </div>
