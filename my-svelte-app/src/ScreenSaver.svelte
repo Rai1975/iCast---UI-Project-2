@@ -87,8 +87,8 @@
 
 <style>
   .screensaver {
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     background: var(--secondary-color);
     display: flex;
     flex-direction: column;

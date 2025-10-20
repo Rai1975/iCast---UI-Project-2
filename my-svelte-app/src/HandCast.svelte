@@ -108,104 +108,77 @@
     window.removeEventListener('touchstart', handleInteraction);
   });
 </script>
-
-<div class="hand-cast-container">
-    <!-- Using emoji hand as the cast -->
-    <div class="cast-hand">
-      <span class="hand-emoji">🤚</span>
-      <div class="display-screen">
-        <div class="screen-content">
-          <nav class="nav-menu">
-            <button
-              class="nav-button"
-              class:active={currentPage === 'health'}
-              on:click={() => changePage('health')}
-            >
-              Health
-            </button>
-            <button
-              class="nav-button"
-              class:active={currentPage === 'signature'}
-              on:click={() => changePage('signature')}
-            >
-              Sign
-            </button>
-            <button
-              class="nav-button"
-              class:active={currentPage === 'uvxray'}
-              on:click={() => changePage('uvxray')}
-            >
-              UV/X-Ray
-            </button>
-            <button
-              class="nav-button"
-              class:active={currentPage === 'pressure'}
-              on:click={() => changePage('pressure')}
-            >
-              Pressure
-            </button>
-          </nav>
-          <div class="page-content">
-              {#if hydrationWarning}
-              <div class="hydration-warning">
-                🚨 STOP! DEVICE IS TOO WET 🚨
-              </div>
-              {:else if isLocked}
-              <ScreenSaver />
-              {:else if currentPage === 'health'}
-              <HealthStatsPage bind:bpm={bpm} bind:hydration={hydration} />
-              {:else if currentPage === 'signature'}
-              <SignaturePage />
-              {:else if currentPage === 'uvxray'}
-              <UVXray />
-              {:else if currentPage === 'pressure'}
-              <Pressure />
-            {/if}
-          </div>
+<div class="main-container">
+  <div class="screen-content">
+    <nav class="nav-menu">
+      <button
+        class="nav-button"
+        class:active={currentPage === 'health'}
+        on:click={() => changePage('health')}
+      >
+        Health
+      </button>
+      <button
+        class="nav-button"
+        class:active={currentPage === 'signature'}
+        on:click={() => changePage('signature')}
+      >
+        Sign
+      </button>
+      <button
+        class="nav-button"
+        class:active={currentPage === 'uvxray'}
+        on:click={() => changePage('uvxray')}
+      >
+        UV/X-Ray
+      </button>
+      <button
+        class="nav-button"
+        class:active={currentPage === 'pressure'}
+        on:click={() => changePage('pressure')}
+      >
+        Pressure
+      </button>
+    </nav>
+    <div class="page-content">
+        {#if hydrationWarning}
+        <div class="hydration-warning">
+          🚨 STOP! DEVICE IS TOO WET 🚨
         </div>
-      </div>
+        {:else if isLocked}
+        <ScreenSaver />
+        {:else if currentPage === 'health'}
+        <HealthStatsPage bind:bpm={bpm} bind:hydration={hydration} />
+        {:else if currentPage === 'signature'}
+        <SignaturePage />
+        {:else if currentPage === 'uvxray'}
+        <UVXray />
+        {:else if currentPage === 'pressure'}
+        <Pressure />
+      {/if}
     </div>
   </div>
 
-  <div class="button-div">
-    {#if currentPage === 'health'}
+  <div class="controls-div">
     <div class="bottom-controls">
-      <button class="control-btn" on:click={decreaseBPM}>-</button>
-      <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
-      <button class="control-btn" on:click={increaseBPM}>+</button>
+      <div class="bpm-controls">
+        <button class="control-btn" on:click={decreaseBPM}>-</button>
+        <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
+        <button class="control-btn" on:click={increaseBPM}>+</button>
+      </div>
       <button class="control-btn" on:click={startHydration}>Start Shower</button>
       <button class="control-btn" on:click={stopHydration}>Stop</button>
       <button class="control-btn reset" on:click={resetHydration}>Reset Humidity</button>
     </div>
-    {:else}
-    <div class="bottom-controls">
-    </div>
-    {/if}
   </div>
+</div>
 
 <style>
-.screensaver-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    background: var(--background-color);
+  .main-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
   }
-
-  .unlock-hint {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--font-color);
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    z-index: 10000;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
   @keyframes pulse {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.8; }
@@ -214,70 +187,28 @@
   button {
     margin: .3rem;
   }
-  .hand-cast-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
+
+  .bpm-controls {
+    width: 100%;
     justify-content: center;
   }
-  .cast-hand {
-    position: relative;
-    transform: translateX(10%) rotate(-270deg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hand-emoji {
-    font-size: 60vmin;
-    filter: grayscale(100%) brightness(1.2);
-    display: block;
-    transform: translate(10%, -10%) scaleX(-1);
-  }
-  .cast-hand::before {
-    content: '';
-    position: absolute;
-    bottom: -15vmin;
-    left: 55%;
-    transform: translateX(-50%) translateY(45%);
-    width: 38vmin;
-    height: 85vmin;
-    background: var(--cast-color);
-    border-radius: 6vmin;
-    box-shadow:
-      inset -2px 0 8px rgba(0,0,0,0.2),
-      inset 2px 0 8px rgba(255,255,255,0.1);
-    z-index: 2;
-  }
-  .display-screen {
-    position: absolute;
-    bottom: 5vmin;
-    left: 50%;
-    transform: translateX(-50%) translateY(70%);
-    width: 40vmin;
-    height: 22vmin;
-    z-index: 10;
+
+  .controls-div {
+    max-height: fit-content;
   }
   
   .screen-content {
-    width: 180%;
-    height: 142%;
     background: var(--background-color);
     border-radius: 8px;
-    padding: 2vmin;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
     overflow-y: auto;
-    transform: rotate(-90deg);
     color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: clamp(12px, 1.5vmin, 24px);
     box-shadow: inset 0 0 20px rgba(0,255,136,0.1);
     position: relative;
-    left: -35%;
-    top: 20%;
   }
   .nav-menu {
     display: flex;
@@ -313,11 +244,9 @@
   }
   
   .bottom-controls {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 1rem;
     z-index: 1000;
     pointer-events: all;
@@ -350,19 +279,6 @@
   .control-btn.reset {
     min-width: 150px;
   }
-
-  .control-btn.lock-btn {
-    min-width: 150px;
-    background: var(--background-color);
-    border-color: #ff9900;
-    color: var(--font-color);
-  }
-
-  .control-btn.lock-btn:hover {
-    background: var(--background-color);
-    box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
-  }
-
   /* Scrollbar styling */
   .screen-content::-webkit-scrollbar,
   .page-content::-webkit-scrollbar {
@@ -382,9 +298,6 @@
 
     .hydration-warning {
     position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background: red;
     color: white;
     font-family: 'Courier New', monospace;
