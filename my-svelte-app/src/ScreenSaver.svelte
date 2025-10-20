@@ -121,7 +121,7 @@
   }
   
   .quote {
-    color: #00ffff;
+    color: var(--font-color);
     font-size: clamp(10px, 1.5vmin, 18px);
     font-style: italic;
     margin: 0;
@@ -147,7 +147,7 @@
   
   .time {
     font-size: clamp(28px, 8vmin, 64px);
-    color: #00ffff;
+    color: var(--font-color);
     font-weight: bold;
     margin-bottom: 1vmin;
     text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
@@ -157,7 +157,7 @@
   
   .date {
     font-size: clamp(10px, 1.8vmin, 20px);
-    color: #00ffff;
+    color: var(--font-color);
     opacity: 0.7;
     font-family: 'Courier New', monospace;
   }

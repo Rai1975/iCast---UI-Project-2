@@ -292,14 +292,12 @@
     padding: 0.5rem;
     background: var(--background-color);
     border: 1px solid #00ffff;
+    border-radius: 4px;
     color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s ease;
-  }
-  .nav-button:not(:last-child) {
-    border-right: none;
   }
   .nav-button.active {
     background: var(--background-color);
