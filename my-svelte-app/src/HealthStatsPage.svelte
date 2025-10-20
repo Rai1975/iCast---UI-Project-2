@@ -51,7 +51,7 @@
     >
       <div class="icon">💧</div>
       <div class="value">{hydration}<span class="unit">%</span></div>
-      <div class="label">Hydration</div>
+      <div class="label">Humidity</div>
     </button>
 
     <button

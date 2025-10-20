@@ -175,7 +175,7 @@
       <button class="control-btn" on:click={increaseBPM}>+</button>
       <button class="control-btn" on:click={startHydration}>Start Shower</button>
       <button class="control-btn" on:click={stopHydration}>Stop</button>
-      <button class="control-btn reset" on:click={resetHydration}>Reset Hydration</button>
+      <button class="control-btn reset" on:click={resetHydration}>Reset Humidity</button>
     </div>
     {:else}
     <div class="bottom-controls">
