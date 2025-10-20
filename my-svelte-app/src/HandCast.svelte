@@ -130,21 +130,28 @@
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="button-div">
     {#if currentPage === 'health'}
-      <div class="bottom-controls">
-        <button class="control-btn" on:click={decreaseBPM}>-</button>
-        <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
-        <button class="control-btn" on:click={increaseBPM}>+</button>
-      </div>
+    <div class="bottom-controls">
+      <button class="control-btn" on:click={decreaseBPM}>-</button>
+      <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
+      <button class="control-btn" on:click={increaseBPM}>+</button>
+    </div>
     {:else}
-      <div class="bottom-controls">
-      </div>
+    <div class="bottom-controls">
+    </div>
     {/if}
   </div>
 
-<style>
-  .screensaver-overlay {
+<style>x1
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  }
+.screensaver-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -186,7 +193,7 @@
   }
   .cast-hand {
     position: relative;
-    transform: translateX(20%) rotate(-270deg);
+    transform: translateX(10%) rotate(-270deg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,7 +213,7 @@
     transform: translateX(-50%) translateY(45%);
     width: 38vmin;
     height: 85vmin;
-    background: linear-gradient(180deg, #d4c5b0 0%, #c4b5a0 100%);
+    background: #c9c9c9;
     border-radius: 6vmin;
     box-shadow:
       inset -2px 0 8px rgba(0,0,0,0.2),
