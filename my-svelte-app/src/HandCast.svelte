@@ -8,9 +8,10 @@
 
   let currentPage = 'health'; // 'health', 'signature', 'uvxray', 'pressure'
   let bpm = 72; // Manage BPM state in parent
+  let hydration = 50;
   let isLocked = false;
   let idleTimeout;
-  const IDLE_TIME = 3000; // 1 minute in milliseconds
+  const IDLE_TIME = 10000; // 1 minute in milliseconds
 
   function changePage(page) {
     currentPage = page;
@@ -59,6 +60,36 @@
     } else {
       resetIdleTimer();
     }
+  }
+
+  let hydrationInterval = null;
+  let isHydrating = false;
+  let hydrationWarning = false;
+
+  function startHydration() {
+    if (isHydrating) return; // already running
+    isHydrating = true;
+    hydrationInterval = setInterval(() => {
+      if (hydration < 100) {
+        hydration += 1;
+      } else {
+        hydration = 100;
+        hydrationWarning = true;
+        stopHydration(); // auto-stop when full
+      }
+    }, 500); // every half second (adjust as you like)
+  }
+
+  function stopHydration() {
+    isHydrating = false;
+    clearInterval(hydrationInterval);
+    hydrationInterval = null;
+  }
+
+  function resetHydration() {
+    stopHydration();
+    hydration = 50;
+    hydrationWarning = false;
   }
 
   onMount(() => {
@@ -115,15 +146,19 @@
             </button>
           </nav>
           <div class="page-content">
-            {#if isLocked}
+              {#if hydrationWarning}
+              <div class="hydration-warning">
+                🚨 STOP! DEVICE IS TOO WET 🚨
+              </div>
+              {:else if isLocked}
               <ScreenSaver />
-            {:else if currentPage === 'health'}
-              <HealthStatsPage bind:bpm={bpm} />
-            {:else if currentPage === 'signature'}
+              {:else if currentPage === 'health'}
+              <HealthStatsPage bind:bpm={bpm} bind:hydration={hydration} />
+              {:else if currentPage === 'signature'}
               <SignaturePage />
-            {:else if currentPage === 'uvxray'}
+              {:else if currentPage === 'uvxray'}
               <UVXray />
-            {:else if currentPage === 'pressure'}
+              {:else if currentPage === 'pressure'}
               <Pressure />
             {/if}
           </div>
@@ -138,6 +173,9 @@
       <button class="control-btn" on:click={decreaseBPM}>-</button>
       <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
       <button class="control-btn" on:click={increaseBPM}>+</button>
+      <button class="control-btn" on:click={startHydration}>Start Shower</button>
+      <button class="control-btn" on:click={stopHydration}>Stop</button>
+      <button class="control-btn reset" on:click={resetHydration}>Reset Hydration</button>
     </div>
     {:else}
     <div class="bottom-controls">
@@ -145,12 +183,7 @@
     {/if}
   </div>
 
-<style>x1
-
-.button-div {
-  display: flex;
-  justify-content: center;
-  }
+<style>
 .screensaver-overlay {
     position: fixed;
     top: 0;
@@ -347,5 +380,27 @@
   .page-content::-webkit-scrollbar-thumb {
     background: #00ff88;
     border-radius: 2px;
+  }
+
+    .hydration-warning {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: red;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(255,0,0,0.8);
+    z-index: 10000;
+    animation: flash 1s infinite;
+  }
+
+  @keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
   }
 </style>
