@@ -271,7 +271,7 @@
     padding: 2vmin;
     overflow-y: auto;
     transform: rotate(-90deg);
-    color: #00ff88;
+    color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: clamp(12px, 1.5vmin, 24px);
     box-shadow: inset 0 0 20px rgba(0,255,136,0.1);
@@ -285,12 +285,12 @@
     margin-bottom: 1rem;
     border-radius: 4px;
     overflow: hidden;
-    background: transparent;
+    background: var(--background-color);
   }
   .nav-button {
     flex: 1;
     padding: 0.5rem;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--background-color);
     border: 1px solid #00ffff;
     color: var(--font-color);
     font-family: 'Courier New', monospace;
@@ -303,10 +303,10 @@
   }
   .nav-button.active {
     background: var(--background-color);
+    color: var(--font-color);
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
   .nav-button:hover:not(.active) {
-    background: rgba(0, 255, 255, 0.1);
     background: var(--background-color);
   }
   .page-content {
@@ -327,7 +327,7 @@
 
   .control-btn {
     padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--background-color);
     border: 2px solid #00ffff;
     color: var(--font-color);
     font-family: 'Courier New', monospace;
@@ -373,11 +373,12 @@
   
   .screen-content::-webkit-scrollbar-track,
   .page-content::-webkit-scrollbar-track {
+    background: var(--background-color); 
   }
   
   .screen-content::-webkit-scrollbar-thumb,
   .page-content::-webkit-scrollbar-thumb {
-    background: #00ff88;
+    background: var(--background-color);
     border-radius: 2px;
   }
 
