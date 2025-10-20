@@ -76,6 +76,9 @@
 </div>
 
 <style>
+  button {
+    margin: .3rem;
+  }
   .hand-cast-container {
     position: relative;
     width: 100vw;

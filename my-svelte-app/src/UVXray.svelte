@@ -196,6 +196,10 @@
 </div>
 
 <style>
+  button {
+    margin: .3rem;
+  }
+
   .uvxray-container {
     display: flex;
     flex-direction: column;
