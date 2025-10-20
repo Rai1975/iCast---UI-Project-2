@@ -2,80 +2,171 @@
   import HealthStatsPage from "./HealthStatsPage.svelte";
   import SignaturePage from "./SignaturePage.svelte";
   import UVXray from "./UVXray.svelte";
+  import ScreenSaver from "./ScreenSaver.svelte";
+  import { onMount, onDestroy } from 'svelte';
 
   let currentPage = 'health'; // 'health', 'signature', 'uvxray'
   let bpm = 72; // Manage BPM state in parent
+  let isLocked = false;
+  let idleTimeout;
+  const IDLE_TIME = 5000; // 1 minute in milliseconds
 
   function changePage(page) {
     currentPage = page;
+    resetIdleTimer();
   }
 
   function increaseBPM() {
     if (bpm < 200) bpm += 5;
+    resetIdleTimer();
   }
 
   function decreaseBPM() {
     if (bpm > 40) bpm -= 5;
+    resetIdleTimer();
   }
 
   function resetBPM() {
     bpm = 72;
+    resetIdleTimer();
   }
+
+  function toggleLock() {
+    isLocked = !isLocked;
+    if (!isLocked) {
+      resetIdleTimer();
+    } else {
+      clearTimeout(idleTimeout);
+    }
+  }
+
+  function resetIdleTimer() {
+    clearTimeout(idleTimeout);
+    if (!isLocked) {
+      idleTimeout = setTimeout(() => {
+        isLocked = true;
+      }, IDLE_TIME);
+    }
+  }
+
+  // Reset timer on any interaction
+  function handleInteraction(e) {
+    if (isLocked) {
+      // Unlock on any interaction when locked
+      isLocked = false;
+      resetIdleTimer();
+    } else {
+      resetIdleTimer();
+    }
+  }
+
+  onMount(() => {
+    resetIdleTimer();
+    window.addEventListener('mousemove', handleInteraction);
+    window.addEventListener('keydown', handleInteraction);
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
+  });
+
+  onDestroy(() => {
+    clearTimeout(idleTimeout);
+    window.removeEventListener('mousemove', handleInteraction);
+    window.removeEventListener('keydown', handleInteraction);
+    window.removeEventListener('click', handleInteraction);
+    window.removeEventListener('touchstart', handleInteraction);
+  });
 </script>
 
 <div class="hand-cast-container">
-  <!-- Using emoji hand as the cast -->
-  <div class="cast-hand">
-    <span class="hand-emoji">🤚</span>
-    <div class="display-screen">
-      <div class="screen-content">
-        <nav class="nav-menu">
-          <button
-            class="nav-button"
-            class:active={currentPage === 'health'}
-            on:click={() => changePage('health')}
-          >
-            Health
-          </button>
-          <button
-            class="nav-button"
-            class:active={currentPage === 'signature'}
-            on:click={() => changePage('signature')}
-          >
-            Sign
-          </button>
-          <button
-            class="nav-button"
-            class:active={currentPage === 'uvxray'}
-            on:click={() => changePage('uvxray')}
-          >
-            UV/X-Ray
-          </button>
-        </nav>
-        <div class="page-content">
-          {#if currentPage === 'health'}
-            <HealthStatsPage bind:bpm={bpm} />
-          {:else if currentPage === 'signature'}
-            <SignaturePage />
-          {:else if currentPage === 'uvxray'}
-            <UVXray />
-          {/if}
+    <!-- Using emoji hand as the cast -->
+    <div class="cast-hand">
+      <span class="hand-emoji">🤚</span>
+      <div class="display-screen">
+        <div class="screen-content">
+          <nav class="nav-menu">
+            <button
+              class="nav-button"
+              class:active={currentPage === 'health'}
+              on:click={() => changePage('health')}
+            >
+              Health
+            </button>
+            <button
+              class="nav-button"
+              class:active={currentPage === 'signature'}
+              on:click={() => changePage('signature')}
+            >
+              Sign
+            </button>
+            <button
+              class="nav-button"
+              class:active={currentPage === 'uvxray'}
+              on:click={() => changePage('uvxray')}
+            >
+              UV/X-Ray
+            </button>
+          </nav>
+          <div class="page-content">
+            {#if isLocked}
+              <ScreenSaver />
+            {:else if currentPage === 'health'}
+              <HealthStatsPage bind:bpm={bpm} />
+            {:else if currentPage === 'signature'}
+              <SignaturePage />
+            {:else if currentPage === 'uvxray'}
+              <UVXray />
+            {/if}
+          </div>
         </div>
-
       </div>
     </div>
+
+    {#if currentPage === 'health'}
+      <div class="bottom-controls">
+        <button class="control-btn" on:click={decreaseBPM}>-</button>
+        <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
+        <button class="control-btn" on:click={increaseBPM}>+</button>
+        <button class="control-btn lock-btn" on:click={toggleLock}>
+          {isLocked ? '🔒 Locked' : '🔓 Lock'}
+        </button>
+      </div>
+    {:else}
+      <div class="bottom-controls">
+        <button class="control-btn lock-btn" on:click={toggleLock}>
+          {isLocked ? '🔒 Locked' : '🔓 Lock'}
+        </button>
+      </div>
+    {/if}
   </div>
 
-  {#if currentPage === 'health'}
-    <div class="bottom-controls">
-      <button class="control-btn" on:click={decreaseBPM}>-</button>
-      <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
-      <button class="control-btn" on:click={increaseBPM}>+</button>
-    </div>
-  {/if}
-</div>
-
 <style>
+  .screensaver-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: black;
+  }
+
+  .unlock-hint {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(0, 255, 255, 0.5);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    z-index: 10000;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
   .hand-cast-container {
     position: relative;
     width: 100vw;
@@ -180,6 +271,7 @@
     display: flex;
     gap: 1rem;
     z-index: 1000;
+    pointer-events: all;
   }
 
   .control-btn {
@@ -208,6 +300,18 @@
 
   .control-btn.reset {
     min-width: 150px;
+  }
+
+  .control-btn.lock-btn {
+    min-width: 150px;
+    background: rgba(0, 0, 0, 0.9);
+    border-color: #ff9900;
+    color: #ff9900;
+  }
+
+  .control-btn.lock-btn:hover {
+    background: rgba(255, 153, 0, 0.2);
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
   }
 
   /* Scrollbar styling */
