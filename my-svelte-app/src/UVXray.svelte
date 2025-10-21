@@ -8,7 +8,7 @@
   // UV Disinfection state
   let isUVActive = false;
   let isUVCompleted = false;
-  let uvTimer = 180; // 3 minutes in seconds
+  let uvTimer = 30; // 3 minutes in seconds
   let uvInterval;
   let uvProgress = 0;
   
@@ -40,11 +40,11 @@
     isUVActive = true;
     isUVCompleted = false;
     uvProgress = 0;
-    uvTimer = 180;
+    uvTimer = 30;
     
     uvInterval = setInterval(() => {
       uvTimer--;
-      uvProgress = ((180 - uvTimer) / 180) * 100;
+      uvProgress = ((30 - uvTimer) / 30) * 100;
       
       if (uvTimer <= 0) {
         completeUV();
@@ -384,6 +384,7 @@
 
   .controls {
     display: flex;
+    gap: 0;
     width: 100%;
     border-radius: 4px;
     overflow: hidden;
@@ -401,10 +402,6 @@
     transition: all 0.3s ease;
   }
 
-  .action-button:not(:last-child) {
-    border-right: none;
-  }
-
   .action-button:hover:not(:disabled):not(.active) {
     background: rgba(0, 255, 255, 0.1);
   }
@@ -415,7 +412,6 @@
   }
 
   .action-button.active {
-    /*background: #00ffff;*/
     color: var(--font-color);
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }

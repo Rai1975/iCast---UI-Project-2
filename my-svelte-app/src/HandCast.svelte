@@ -11,7 +11,7 @@
   let hydration = 50;
   let isLocked = false;
   let idleTimeout;
-  const IDLE_TIME = 6000; // 1 minute in milliseconds
+  const IDLE_TIME = 60000; // 1 minute in milliseconds
 
   function changePage(page) {
     currentPage = page;
@@ -309,7 +309,8 @@
     z-index: 1000;
     pointer-events: all;
     margin-left: auto; /* push controls to the far right of the main container */
-    margin-right: 1rem; /* small gap from right edge */
+    margin-right: 6rem; /* small gap from right edge */
+    margin-bottom: 5rem;
     background: rgba(0, 105, 92, 0.60); /* subtle teal tint */
     border-radius: 8px;
     padding: 0.6rem;
