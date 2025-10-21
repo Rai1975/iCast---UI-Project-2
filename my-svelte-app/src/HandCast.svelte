@@ -108,6 +108,16 @@
     window.removeEventListener('touchstart', handleInteraction);
   });
 </script>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="logo">🩺</span>
+      <span class="title">iCast</span>
+    </div>
+    <div class="tag">Medical Interface</div>
+  </div>
+</header>
+
 <div class="main-container">
   <div class="screen-content">
     <nav class="nav-menu">
@@ -174,7 +184,9 @@
   .main-container {
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
+    /* make room for fixed header */
+    min-height: calc(100vh - 64px);
+    padding-top: 64px;
     align-items: center;
     gap: 1rem;
     /* Background image served from public/assets */
@@ -182,6 +194,52 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  /* Site header */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    /* Lighter, semi-transparent teal for a less dark header */
+    background: rgba(0, 105, 92, 0.65); /* teal with 65% opacity */
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    z-index: 2000;
+    font-family: 'Courier New', monospace;
+    backdrop-filter: blur(4px); /* subtle glass effect */
+    text-shadow: rgba(0, 0, 0, 0.503) 0.1em 0.1em .2em;
+  }
+
+  .site-header .header-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .site-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .site-header .logo {
+    font-size: 2.4rem;
+  }
+
+  .site-header .tag {
+    font-size: 1.5rem;
+    opacity: 0.9;
   }
   /* pulse keyframes are defined in HealthStatsPage; remove duplicate animation here */
 
@@ -255,33 +313,37 @@
     pointer-events: all;
     margin-left: auto; /* push controls to the far right of the main container */
     margin-right: 1rem; /* small gap from right edge */
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: .2rem;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    background: rgba(0, 105, 92, 0.60); /* subtle teal tint */
+    border-radius: 8px;
+    padding: 0.6rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    backdrop-filter: blur(6px);
   }
 
   .control-btn {
-    padding: 1rem 2rem;
-    background: var(--background-color);
-    border: 2px solid #00ffff;
-    color: var(--font-color);
+    padding: 0.8rem 1.6rem;
+    background: rgba(0, 64, 54, 0.3); /* light translucent background */
+    border: 1px solid rgba(0, 200, 170, 0.3);
+    color: #ffffff;
     font-family: 'Courier New', monospace;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.05rem;
+    font-weight: 700;
     cursor: pointer;
     border-radius: 8px;
-    transition: all 0.2s ease;
-    min-width: 60px;
+    transition: all 0.18s ease;
+    min-width: 64px;
+    backdrop-filter: blur(3px);
+    text-shadow: rgba(0, 0, 0, 0.503) 0.1em 0.1em .2em;
   }
 
   .control-btn:hover {
-    background: var(--background-color);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    background: rgba(230, 255, 250, 0.18);
+    box-shadow: 0 6px 18px rgba(0, 105, 92, 0.12);
   }
 
   .control-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+    transform: scale(0.98);
+    box-shadow: 0 4px 10px rgba(0, 105, 92, 0.12);
   }
 
   .control-btn.reset {
