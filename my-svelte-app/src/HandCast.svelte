@@ -158,19 +158,16 @@
       {/if}
     </div>
   </div>
-
-  <div class="controls-div">
-    <div class="bottom-controls">
-      <div class="bpm-controls">
-        <button class="control-btn" on:click={decreaseBPM}>-</button>
-        <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
-        <button class="control-btn" on:click={increaseBPM}>+</button>
-      </div>
-      <button class="control-btn" on:click={startHydration}>Start Shower</button>
-      <button class="control-btn" on:click={stopHydration}>Stop</button>
-      <button class="control-btn reset" on:click={resetHydration}>Reset Humidity</button>
+  <div class="bottom-controls">
+    <div class="bpm-controls">
+      <button class="control-btn" on:click={decreaseBPM}>-</button>
+      <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
+      <button class="control-btn" on:click={increaseBPM}>+</button>
     </div>
-  </div>
+    <button class="control-btn" on:click={startHydration}>Start Shower</button>
+    <button class="control-btn" on:click={stopHydration}>Stop</button>
+    <button class="control-btn reset" on:click={resetHydration}>Reset Humidity</button>
+    </div>
 </div>
 
 <style>
@@ -178,6 +175,12 @@
     display: flex;
     flex-direction: row;
     min-height: 100vh;
+  }
+
+  /* make main container align items center so controls vertically center next to screen */
+  .main-container {
+    align-items: center;
+    gap: 1rem;
   }
   @keyframes pulse {
     0%, 100% { opacity: 0.3; }
@@ -192,23 +195,23 @@
     width: 100%;
     justify-content: center;
   }
-
-  .controls-div {
-    max-height: fit-content;
-  }
   
   .screen-content {
     background: var(--background-color);
     border-radius: 8px;
     padding: 10px;
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
+    /* Fixed size so it remains the same across scenes */
+    width: 720px; /* desktop/tablet fixed width - change as needed */
+    height: 310px; /* fixed height - change as needed */
+    overflow: hidden; /* prevent outer scroll, use inner scrolling for page-content */
     color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: clamp(12px, 1.5vmin, 24px);
     box-shadow: inset 0 0 20px rgba(0,255,136,0.1);
     position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
   }
   .nav-menu {
     display: flex;
@@ -239,17 +242,21 @@
     background: var(--background-color);
   }
   .page-content {
-    height: calc(100% - 2.5rem);
+    /* make page content scroll internally while parent stays fixed */
+    flex: 1 1 auto;
     overflow-y: auto;
+    height: calc(100% - 2.5rem);
   }
   
   .bottom-controls {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* center vertically alongside screen */
     gap: 1rem;
     z-index: 1000;
     pointer-events: all;
+    margin-left: auto; /* push controls to the far right of the main container */
+    margin-right: 1rem; /* small gap from right edge */
   }
 
   .control-btn {

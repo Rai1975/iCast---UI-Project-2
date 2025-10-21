@@ -205,7 +205,7 @@
     flex-direction: column;
     gap: 1.5rem;
     padding: 1rem;
-    height: 100%;
+    height: 90%;
     color: var(--font-color);
     align-items: center;
     justify-content: center;
@@ -322,6 +322,7 @@
     align-items: center;
     justify-content: center;
     transition: opacity 0.3s ease;
+    rotate: 90deg;
   }
 
   .xray-bone {
