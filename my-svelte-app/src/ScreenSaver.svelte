@@ -93,7 +93,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* padding: 3vmin; */
     position: relative;
     overflow: hidden;
   }

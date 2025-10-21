@@ -175,22 +175,15 @@
     display: flex;
     flex-direction: row;
     min-height: 100vh;
-  }
-
-  /* make main container align items center so controls vertically center next to screen */
-  .main-container {
     align-items: center;
     gap: 1rem;
-    /* Use the public folder root path so Vite serves this as /assets/... */
+    /* Background image served from public/assets */
     background-image: url('/assets/images/arm.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-  }
+  /* pulse keyframes are defined in HealthStatsPage; remove duplicate animation here */
 
   button {
     margin: .3rem;
@@ -262,6 +255,9 @@
     pointer-events: all;
     margin-left: auto; /* push controls to the far right of the main container */
     margin-right: 1rem; /* small gap from right edge */
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: .2rem;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
   }
 
   .control-btn {

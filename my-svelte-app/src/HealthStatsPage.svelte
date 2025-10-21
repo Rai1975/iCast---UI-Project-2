@@ -153,8 +153,5 @@
     }
   }
 
-  @keyframes scan {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100%); }
-  }
+  /* removed unused scan keyframes (used in other components like ScreenSaver) */
 </style>

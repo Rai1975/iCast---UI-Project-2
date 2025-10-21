@@ -384,7 +384,6 @@
 
   .controls {
     display: flex;
-    gap: 0;
     width: 100%;
     border-radius: 4px;
     overflow: hidden;

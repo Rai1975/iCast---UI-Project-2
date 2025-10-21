@@ -348,7 +348,6 @@
   }
 
   .arrow-btn:hover:not(:disabled) {
-    background: var(--secondary-color);
     box-shadow: var(--secondary-color);
     transform: scale(1.1);
   }
@@ -401,7 +400,6 @@
   }
 
   .update-btn:hover:not(:disabled) {
-    background: var(--secondary-color);
     box-shadow: var(--secondary-color);
     transform: translateY(-1px);
   }
@@ -411,15 +409,7 @@
     cursor: not-allowed;
   }
 
-  .pressure-history {
-    background: var(--secondary-color);
-    border: 1px solid #00ffff;
-    border-radius: 1vmin;
-    padding: 1vmin;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vmin;
-  }
+  /* removed unused .pressure-history block */
 
   .history-header {
     display: flex;
