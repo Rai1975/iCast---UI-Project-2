@@ -11,7 +11,7 @@
   let hydration = 50;
   let isLocked = false;
   let idleTimeout;
-  const IDLE_TIME = 10000; // 1 minute in milliseconds
+  const IDLE_TIME = 60000; // 1 minute in milliseconds
 
   function changePage(page) {
     currentPage = page;
@@ -181,6 +181,11 @@
   .main-container {
     align-items: center;
     gap: 1rem;
+    /* Use the public folder root path so Vite serves this as /assets/... */
+    background-image: url('/assets/images/arm.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   @keyframes pulse {
     0%, 100% { opacity: 0.3; }
