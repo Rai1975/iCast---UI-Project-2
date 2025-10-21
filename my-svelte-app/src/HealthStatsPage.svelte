@@ -41,7 +41,7 @@
     >
       <div class="icon">🦴</div>
       <div class="value">{boneHealth}<span class="unit">%</span></div>
-      <div class="label">Bone</div>
+      <div class="label">BONE STRENGTH</div>
     </button>
 
     <button
