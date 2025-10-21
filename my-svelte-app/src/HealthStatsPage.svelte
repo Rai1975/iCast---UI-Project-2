@@ -1,6 +1,6 @@
 <script>
-  export let recovery = 87;
-  export let boneHealth = 92;
+  export let recovery = 25;
+  export let boneHealth = 33;
   export let bpm = 72;
   export let temperature = 36.8;
   export let hydration = 78;
@@ -153,5 +153,8 @@
     }
   }
 
-  /* removed unused scan keyframes (used in other components like ScreenSaver) */
+  @keyframes scan {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+  }
 </style>
