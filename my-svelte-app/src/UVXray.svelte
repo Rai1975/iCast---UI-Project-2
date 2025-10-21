@@ -415,7 +415,7 @@
   }
 
   .action-button.active {
-    background: #00ffff;
+    /*background: #00ffff;*/
     color: var(--font-color);
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
