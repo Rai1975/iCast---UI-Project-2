@@ -11,7 +11,7 @@
   let hydration = 50;
   let isLocked = false;
   let idleTimeout;
-  const IDLE_TIME = 60000; // 1 minute in milliseconds
+  const IDLE_TIME = 6000; // 1 minute in milliseconds
 
   function changePage(page) {
     currentPage = page;
@@ -111,7 +111,6 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="brand">
-      <span class="logo">🩺</span>
       <span class="title">iCast</span>
     </div>
     <div class="tag">Medical Interface</div>
@@ -184,14 +183,12 @@
   .main-container {
     display: flex;
     flex-direction: row;
-    /* make room for fixed header */
     min-height: calc(100vh - 64px);
     padding-top: 64px;
     align-items: center;
     gap: 1rem;
-    /* Background image served from public/assets */
     background-image: url('/assets/images/arm.jpg');
-    background-size: cover;
+    background-size: 125%;
     background-position: center;
     background-repeat: no-repeat;
   }
@@ -230,18 +227,16 @@
     align-items: center;
     gap: 0.5rem;
     font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  .site-header .logo {
-    font-size: 2.4rem;
+    font-size: 1.5rem;
   }
 
   .site-header .tag {
     font-size: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
     opacity: 0.9;
   }
-  /* pulse keyframes are defined in HealthStatsPage; remove duplicate animation here */
+
 
   button {
     margin: .3rem;
@@ -253,13 +248,15 @@
   }
   
   .screen-content {
+    transform: rotate(-7deg);
     background: var(--background-color);
     border-radius: 8px;
     padding: 10px;
-    /* Fixed size so it remains the same across scenes */
-    width: 720px; /* desktop/tablet fixed width - change as needed */
-    height: 310px; /* fixed height - change as needed */
-    overflow: hidden; /* prevent outer scroll, use inner scrolling for page-content */
+    margin-left: 180px;
+    margin-bottom: 55px;
+    width: 720px;
+    height: 310px;
+    overflow: hidden;
     color: var(--font-color);
     font-family: 'Courier New', monospace;
     font-size: clamp(12px, 1.5vmin, 24px);
