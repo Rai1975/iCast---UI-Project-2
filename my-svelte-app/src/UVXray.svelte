@@ -322,12 +322,14 @@
     align-items: center;
     justify-content: center;
     transition: opacity 0.3s ease;
-    rotate: 90deg;
   }
 
   .xray-bone {
     height: 90%;
     width: auto;
+    rotate: 90deg;
+    scale: 500%;
+    margin-bottom: 15%;
     filter: brightness(0.8) contrast(1.2) drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
   }
 
