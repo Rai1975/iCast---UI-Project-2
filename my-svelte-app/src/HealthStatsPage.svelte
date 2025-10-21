@@ -1,6 +1,6 @@
 <script>
-  export let recovery = 87;
-  export let boneHealth = 92;
+  export let recovery = 25;
+  export let boneHealth = 33;
   export let bpm = 72;
   export let temperature = 36.8;
   export let hydration = 78;
@@ -41,7 +41,7 @@
     >
       <div class="icon">🦴</div>
       <div class="value">{boneHealth}<span class="unit">%</span></div>
-      <div class="label">Bone</div>
+      <div class="label">BONE STRENGTH</div>
     </button>
 
     <button
@@ -68,8 +68,8 @@
 
 <style>
   .health-display {
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
   }
