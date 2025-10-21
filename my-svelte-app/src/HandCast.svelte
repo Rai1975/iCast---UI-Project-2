@@ -3,6 +3,7 @@
   import SignaturePage from "./SignaturePage.svelte";
   import UVXray from "./UVXray.svelte";
   import ScreenSaver from "./ScreenSaver.svelte";
+  import InfoModal from "./InfoModal.svelte";
   import { onMount, onDestroy } from 'svelte';
   import Pressure from "./Pressure.svelte";
 
@@ -10,10 +11,11 @@
   let bpm = 72; // Manage BPM state in parent
   let hydration = 50;
   let isLocked = false;
+  let showInfoPopup = false;
   let idleTimeout;
-  const IDLE_TIME = 60000; // 1 minute in milliseconds
+  const IDLE_TIME = 10000;
 
-  function changePage(page) {
+ function changePage(page) {
     currentPage = page;
     resetIdleTimer();
   }
@@ -42,9 +44,18 @@
     }
   }
 
+  function showInfo() {
+    showInfoPopup = true;
+    resetIdleTimer();
+  }
+
+  function closeInfo() {
+    showInfoPopup = false;
+  }
+
   function resetIdleTimer() {
     clearTimeout(idleTimeout);
-    if (!isLocked) {
+    if (!isLocked && currentPage != 'uvxray') {
       idleTimeout = setTimeout(() => {
         isLocked = true;
       }, IDLE_TIME);
@@ -77,7 +88,7 @@
         hydrationWarning = true;
         stopHydration(); // auto-stop when full
       }
-    }, 500); // every half second (adjust as you like)
+    }, 250); // every half second (adjust as you like)
   }
 
   function stopHydration() {
@@ -108,6 +119,7 @@
     window.removeEventListener('touchstart', handleInteraction);
   });
 </script>
+
 <header class="site-header">
   <div class="header-inner">
     <div class="brand">
@@ -172,12 +184,17 @@
       <button class="control-btn" on:click={decreaseBPM}>-</button>
       <button class="control-btn reset" on:click={resetBPM}>Reset BPM</button>
       <button class="control-btn" on:click={increaseBPM}>+</button>
+      <button class="control-btn" on:click={showInfo}>i</button>
     </div>
     <button class="control-btn" on:click={startHydration}>Start Shower</button>
     <button class="control-btn" on:click={stopHydration}>Stop</button>
     <button class="control-btn reset" on:click={resetHydration}>Reset Humidity</button>
-    </div>
+  </div>
 </div>
+
+{#if showInfoPopup}
+  <InfoModal onClose={closeInfo} />
+{/if}
 
 <style>
   .main-container {
