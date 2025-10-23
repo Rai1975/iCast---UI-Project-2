@@ -81,7 +81,8 @@ Needs and requirements:
   <img width="975" height="583" alt="image" src="https://github.com/user-attachments/assets/3b70c997-c414-460d-a5d1-cc8bf9966b00" />
 
 Hybrid Sketch:
-  <img width="671" height="608" alt="image" src="https://github.com/user-attachments/assets/c74f1cd8-969f-445a-a227-9f5a228a1b7c" />
+
+<img width="671" height="608" alt="image" src="https://github.com/user-attachments/assets/c74f1cd8-969f-445a-a227-9f5a228a1b7c" />
 
 Feedback:
 
@@ -151,4 +152,5 @@ Demo: [https://www.youtube.com/watch?v=dz-PW5aLvoY](https://www.youtube.com/watc
 Code: [https://github.com/Rai1975/iCast---UI-Project-2](https://github.com/Rai1975/iCast---UI-Project-2)
 
 Website: [https://icast-ui-project2.vercel.app/](https://icast-ui-project2.vercel.app/)
+
 
