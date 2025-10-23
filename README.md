@@ -74,9 +74,14 @@ Needs and requirements:
 
 **Sketches:**
 
-  
+  <img width="975" height="531" alt="image" src="https://github.com/user-attachments/assets/3dc9d6a2-ea09-4648-8694-3fa4a9ee7474" />
+  <img width="975" height="731" alt="image" src="https://github.com/user-attachments/assets/a1e65f75-4c53-4594-a579-9b8377e172ef" />
+  <img width="975" height="780" alt="image" src="https://github.com/user-attachments/assets/a8c9b87d-9c53-4a44-9212-b8f154e3da0d" />
+  <img width="975" height="548" alt="image" src="https://github.com/user-attachments/assets/849f0823-50d8-4464-9a1d-affec4accdd6" />
+  <img width="975" height="583" alt="image" src="https://github.com/user-attachments/assets/3b70c997-c414-460d-a5d1-cc8bf9966b00" />
 
 Hybrid Sketch:
+  <img width="671" height="608" alt="image" src="https://github.com/user-attachments/assets/c74f1cd8-969f-445a-a227-9f5a228a1b7c" />
 
 Feedback:
 
@@ -90,21 +95,28 @@ Our project is a smart cast, where a user can track and control different featur
 
 The interface consists of 4 main pages: Health, Signatures, UV/X-Ray, and Pressure. The health page is the main dashboard showcasing all important information. It shows the status of your recovery journey, your heart rate, the strength of the bone, your body temperature, and the humidity inside the cast. The humidity also functions as a critical safety feature as it tells you if the device is too wet. This feature can be seen by interacting with shower controls. You can also see the BPM change by interacting with the +, - and reset BPM buttons.
 
+<img width="853" height="456" alt="image" src="https://github.com/user-attachments/assets/2280c644-0ae4-453e-a1d1-a7cabb74e117" />
+<img width="858" height="458" alt="image" src="https://github.com/user-attachments/assets/7f006cbd-cab4-4e66-841a-e4fb46a54801" />
+
 The signature page is a slideshow format page on the display which shuffles between different signatures sent to the cast by your loved ones. It capitalizes the entire screen space to show the signature and also shows the name of who sent the signature at the bottom.
 
-  
+<img width="817" height="438" alt="image" src="https://github.com/user-attachments/assets/d8a1d19f-9f32-4a71-8d32-02fc1af9ec71" />
 
 The UV/X-ray slide houses two features of the cast: The UV cleaner and the X-ray. The UV cleaner screen houses a timer and two button controls. The start UV clean button starts the cleaning procedure within the cast, and a timer on the screen to signal that the process has started. Once the timer runs out, it shows that the cleaning procedure is complete.
 
-  
+<img width="781" height="416" alt="image" src="https://github.com/user-attachments/assets/95ddd546-5eda-4392-b247-31d1a9351e9c" />
 
 When the start x-ray button is pressed, the sensor then runs a complete scan of the bone underneath the cast and shows the results live on the screen. The resulting x-ray helps the user keep track of their recovery journey.
 
-  
+<img width="786" height="419" alt="image" src="https://github.com/user-attachments/assets/8338060a-eea4-4224-8741-dd88a0583975" />
 
 The pressure screen helps increase and decrease the tightness of the cast on the arm. The screen also shows a graph with patterns of how the pressure has been increased or decreased. The min and max pressure text helps keep track of how high or low the pressure has been set to. When the target pressure is adjusted using the arrows, you can see the current pressure increase with time.
 
+<img width="808" height="433" alt="image" src="https://github.com/user-attachments/assets/6fad8a33-c98c-49eb-9f0a-02ebe7eb9be5" />
+
 If the screen is left unattended for over 5 seconds, the display goes into a screensaver mode. The screensaver shows the date and time in the dead center. The top of the screen shows a motivational quote to keep the user’s spirits up. The bottom of the screen shuffles through the signatures the user’s loved ones send.
+
+<img width="858" height="456" alt="image" src="https://github.com/user-attachments/assets/e593d1f0-f40e-4eed-bc6d-adb7f5837d61" />
 
 **Implementation:**
 
@@ -112,7 +124,13 @@ For this project we used the Svelte framework with JS, HTML, CSS. Most of us use
 
 We used a Svelte component for each page, switching between them as seen below:  
 
+<img width="703" height="282" alt="image" src="https://github.com/user-attachments/assets/e4659050-ecfb-4c5b-9bc3-8bdb57d8fc2a" />
+
 We didn’t use any external libraries, but we used imported Svelte methods. We used onMount and onDestroy in most components, and we also used the fade transition from Svelte. Some examples of such are below:
+
+<img width="706" height="204" alt="image" src="https://github.com/user-attachments/assets/ed8aab94-2097-44ad-be1c-0a06e71aa137" />
+<img width="975" height="332" alt="image" src="https://github.com/user-attachments/assets/ba9ef584-9773-400e-9706-5b1bf2a1d45f" />
+<img width="975" height="28" alt="image" src="https://github.com/user-attachments/assets/497c6bb9-ef9a-4940-a0ea-193786e6de5a" />
 
 The screenshot directly above outlines a use case of the fade transition, seen at the end of this line.
 
@@ -133,3 +151,4 @@ Demo: [https://www.youtube.com/watch?v=dz-PW5aLvoY](https://www.youtube.com/watc
 Code: [https://github.com/Rai1975/iCast---UI-Project-2](https://github.com/Rai1975/iCast---UI-Project-2)
 
 Website: [https://icast-ui-project2.vercel.app/](https://icast-ui-project2.vercel.app/)
+
